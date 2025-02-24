@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>INST377 - Lab 4 - bkang12</title>
+        <link rel="stylesheet" href="inst377_lab4.css">
+    </head>
+    <body style="background-color:powderblue;">
+        <h1 id="heading">INST377 Lab 4</h1>
+
+        <div class="container">
+            <div class="square">
+                <form name="nameForm" onsubmit="return alertMe()" action="https://www.google.com">
+                    <label for="name">name:</label>
+                    <input type="text" id="name">
+                    <input type="submit">
+                </form>
+            </div>
+    
+            <div class="square">
+                <button id="colorButton" click="changeColor()">Change Color</button>
+            </div>
+    
+            <div class="square">
+                <form name="validateMe" onsubmit="return textTester()" action="https://www.google.com">
+                    <label for="name">put text here:</label>
+                    <input type="text" id="name">
+                    <input type="submit">
+                </form>
+            </div>
+    
+            <div class="square">
+                <button onclick="addText()">Add Text</button>
+            </div>
+        </div>
+
+        <script>
+            function alertMe() {
+                var check = document.forms["nameForm"]["name"].value
+                if(check == "") {
+                    alert("please put in a name")
+                } else {
+                    alert("Hi " + document.nameForm.name.value + "!");
+                }
+                return false;
+            }
+            document.getElementById("colorButton").addEventListener("click", changeColor);
+            function changeColor() {
+                if(document.body.style.backgroundColor == "powderblue"){
+                    document.body.style.backgroundColor = "mistyrose"
+                } else {
+                    document.body.style.backgroundColor = "powderblue"
+                }
+            }
+            function textTester() {
+                var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                var check = document.forms["validateMe"]["name"].value
+                if(check.match(validation)){
+                    alert("that's not good")
+                } else {
+                    document.forms["validateMe"]["name"].value = ""
+                }
+                return false;
+            }
+            function addText() {
+                document.getElementById('heading').innerHTML += ' Add Text'
+            }
+        </script>
+
+    </body>
+</html>
